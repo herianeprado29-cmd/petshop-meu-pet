@@ -1,0 +1,921 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Meu Pet - Pet Shop, adoção responsável, banho e tosa e cuidados veterinários.">
+
+<title>Meu Pet | Pet Shop</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --green: #34765b;
+  --dark: #245b43;
+  --mint: #e8f2e9;
+  --cream: #fffaf4;
+  --ink: #26352f;
+  --muted: #69766f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: min(1120px, 92%);
+  margin: auto;
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 22px;
+  border-radius: 30px;
+  background: var(--green);
+  color: white;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn:hover {
+  background: var(--dark);
+  transform: translateY(-2px);
+}
+
+.btn.secondary {
+  background: white;
+  color: var(--dark);
+  border: 1px solid #dce8dd;
+}
+
+/* TOPO */
+
+.topbar {
+  background: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-size: 13px;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255,250,244,.97);
+  border-bottom: 1px solid #eee;
+}
+
+.nav {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  font: 900 26px Nunito, sans-serif;
+  color: var(--dark);
+}
+
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.navlinks a:hover { color: var(--green); }
+
+.menu-btn {
+  display: none;
+  background: var(--mint);
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* HOME */
+
+.hero {
+  padding: 75px 0;
+  background: linear-gradient(120deg, #f3f7ee, var(--cream));
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  background: var(--mint);
+  color: var(--dark);
+  padding: 7px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.hero h1 {
+  font: 900 clamp(42px,5vw,65px)/1.1 Nunito, sans-serif;
+  margin: 20px 0;
+}
+
+.hero h1 span { color: var(--green); }
+
+.hero p {
+  color: var(--muted);
+  font-size: 17px;
+  margin-bottom: 25px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-photo {
+  height: 420px;
+  border-radius: 48% 48% 25px 25px;
+  overflow: hidden;
+  background: var(--mint);
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* SEÇÕES */
+
+section { padding: 80px 0; }
+
+.section-head {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 38px;
+}
+
+.kicker {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.section-head h2 {
+  font: 900 38px Nunito, sans-serif;
+  margin: 10px 0;
+}
+
+.section-head p { color: var(--muted); }
+
+/* ADOÇÃO */
+
+.pets { background: white; }
+
+.pet-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 22px;
+}
+
+.pet-card {
+  background: white;
+  border: 1px solid #e8e8df;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: .2s;
+}
+
+.pet-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px #26352f15;
+}
+
+.pet-img {
+  height: 220px;
+  position: relative;
+  background: var(--mint);
+}
+
+.pet-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: white;
+  color: var(--dark);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.pet-info { padding: 20px; }
+
+.pet-info h3 {
+  font: 900 22px Nunito, sans-serif;
+}
+
+.pet-meta {
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pet-info p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 12px 0 18px;
+  min-height: 44px;
+}
+
+.pet-info .btn { width: 100%; }
+
+/* SERVIÇOS */
+
+.services { background: var(--mint); }
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 22px;
+}
+
+.service-card {
+  background: white;
+  border-radius: 20px;
+  padding: 28px;
+}
+
+.service-icon {
+  font-size: 35px;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  font: 900 22px Nunito, sans-serif;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.service-card a {
+  color: var(--green);
+  font-weight: 800;
+  font-size: 14px;
+}
+
+/* CONTATO */
+
+.cta-panel {
+  background: var(--dark);
+  color: white;
+  border-radius: 25px;
+  padding: 42px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+.cta-panel h2 {
+  font: 900 30px Nunito, sans-serif;
+  margin-bottom: 10px;
+}
+
+.cta-panel p { color: #d9e9dc; }
+
+.cta-panel .btn {
+  background: white;
+  color: var(--dark);
+  white-space: nowrap;
+}
+
+/* FOOTER */
+
+footer {
+  background: #203e31;
+  color: white;
+  padding: 55px 0 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 30px;
+  padding-bottom: 35px;
+}
+
+.footer-grid h4 {
+  font: 800 16px Nunito, sans-serif;
+  margin-bottom: 15px;
+}
+
+.footer-grid p,
+.footer-grid a {
+  color: #c4d4c7;
+  font-size: 13px;
+  display: block;
+  margin: 8px 0;
+}
+
+.footer-about { max-width: 270px; }
+
+.copyright {
+  border-top: 1px solid #45604d;
+  padding-top: 18px;
+  color: #aebfb1;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* MODAL */
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: #14231bcc;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.open { display: flex; }
+
+.modal-box {
+  background: white;
+  width: min(460px,100%);
+  padding: 28px;
+  border-radius: 20px;
+  position: relative;
+}
+
+.modal-box h3 {
+  font: 900 24px Nunito, sans-serif;
+}
+
+.modal-box p {
+  color: var(--muted);
+  margin: 8px 0 15px;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  border: none;
+  background: var(--mint);
+  padding: 7px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.form-row { margin: 12px 0; }
+
+.form-row label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.form-row input,
+.form-row textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dce4dc;
+  border-radius: 10px;
+  font: inherit;
+}
+
+.form-row textarea { min-height: 80px; }
+
+.modal-box .btn { width: 100%; }
+
+/* RESPONSIVIDADE */
+
+@media(max-width:850px) {
+  .pet-grid,
+  .service-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media(max-width:640px) {
+  .menu-btn { display: block; }
+
+  .navlinks {
+    display: none;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    background: var(--cream);
+    padding: 20px;
+    flex-direction: column;
+  }
+
+  .navlinks.show { display: flex; }
+
+  .hero-grid { grid-template-columns: 1fr; }
+
+  .hero-photo { height: 320px; }
+
+  .pet-grid,
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-panel {
+    display: block;
+    padding: 28px;
+  }
+
+  .cta-panel .btn { margin-top: 20px; }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .section-head h2 { font-size: 30px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  🐾 Amor, cuidado e uma nova chance para quem mais precisa.
+</div>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#inicio">🐾 meu pet</a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">
+      ☰
+    </button>
+
+    <nav class="navlinks" id="navLinks">
+      <a href="#inicio">Home</a>
+      <a href="#adocao">Adoção</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#contato">Contato</a>
+      <a class="btn" href="#adocao">Adote um amigo</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- HOME -->
+
+<section class="hero" id="inicio">
+  <div class="container hero-grid">
+
+    <div>
+      <span class="eyebrow">♡ Um lar muda tudo</span>
+
+      <h1>
+        Todo pet merece
+        <span>amor de verdade.</span>
+      </h1>
+
+      <p>
+        No Meu Pet, cada cuidado é feito com carinho.
+        Encontre seu novo melhor amigo ou conheça nossos
+        serviços para deixar a vida do seu companheiro
+        ainda mais feliz.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn" href="#adocao">Conheça os pets →</a>
+        <a class="btn secondary" href="#servicos">Nossos serviços</a>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <img
+        src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=1000&q=85"
+        alt="Cachorro olhando com expressão amigável">
+    </div>
+
+  </div>
+</section>
+
+<!-- SEIS PETS PARA ADOÇÃO -->
+
+<section class="pets" id="adocao">
+  <div class="container">
+
+    <div class="section-head">
+      <span class="kicker">Encontre seu companheiro</span>
+      <h2>Seis focinhos esperando por você</h2>
+      <p>
+        Conheça nossos amigos. A adoção é um gesto de amor
+        e um compromisso para toda a vida.
+      </p>
+    </div>
+
+    <div class="pet-grid">
+
+      <article class="pet-card">
+        <div class="pet-img">
+          <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80" alt="Cachorro Bento">
+          <span class="tag">Disponível</span>
+        </div>
+        <div class="pet-info">
+          <h3>Bento</h3>
+          <div class="pet-meta">🐶 Cão • 2 anos</div>
+          <p>Carinhoso, brincalhão e fã de passeios ao ar livre.</p>
+          <button class="btn adopt-btn" data-pet="Bento">Quero conhecer</button>
+        </div>
+      </article>
+
+      <article class="pet-card">
+        <div class="pet-img">
+          <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=800&q=80" alt="Gato Mingau">
+          <span class="tag">Disponível</span>
+        </div>
+        <div class="pet-info">
+          <h3>Mingau</h3>
+          <div class="pet-meta">🐱 Gato • 1 ano</div>
+          <p>Tranquilo e curioso. Adora uma janela ensolarada.</p>
+          <button class="btn adopt-btn" data-pet="Mingau">Quero conhecer</button>
+        </div>
+      </article>
+
+      <article class="pet-card">
+        <div class="pet-img">
+         <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80" alt="Cachorro Thor">
+          <span class="tag">Disponível</span>
+        </div>
+        <div class="pet-info">
+          <h3>Thor</h3>
+          <div class="pet-meta">🐶 Cão • 3 anos</div>
+          <p>Cheio de energia, sociável e pronto para aventuras.</p>
+          <button class="btn adopt-btn" data-pet="Thor">Quero conhecer</button>
+        </div>
+      </article>
+
+      <article class="pet-card">
+        <div class="pet-img">
+          <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?auto=format&fit=crop&w=800&q=80" alt="Gata Luna">
+          <span class="tag">Disponível</span>
+        </div>
+        <div class="pet-info">
+          <h3>Luna</h3>
+          <div class="pet-meta">🐱 Gata • 8 meses</div>
+          <p>Doce e delicada, gosta de carinho e tranquilidade.</p>
+          <button class="btn adopt-btn" data-pet="Luna">Quero conhecer</button>
+        </div>
+      </article>
+
+      <article class="pet-card">
+        <div class="pet-img">
+          <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80" alt="Cachorro Pipoca">
+          <span class="tag">Disponível</span>
+        </div>
+        <div class="pet-info">
+          <h3>Pipoca</h3>
+          <div class="pet-meta">🐶 Cão • 1 ano</div>
+          <p>Pequeno no tamanho, gigante no carinho.</p>
+          <button class="btn adopt-btn" data-pet="Pipoca">Quero conhecer</button>
+        </div>
+      </article>
+
+      <article class="pet-card">
+        <div class="pet-img">
+          <img src="https://images.unsplash.com/photo-1511044568932-338cba0ad803?auto=format&fit=crop&w=800&q=80" alt="Gato Nino">
+          <span class="tag">Disponível</span>
+        </div>
+        <div class="pet-info">
+          <h3>Nino</h3>
+          <div class="pet-meta">🐱 Gato • 2 anos</div>
+          <p>Independente, esperto e muito companheiro.</p>
+          <button class="btn adopt-btn" data-pet="Nino">Quero conhecer</button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRÊS SERVIÇOS -->
+
+<section class="services" id="servicos">
+  <div class="container">
+
+    <div class="section-head">
+      <span class="kicker">Cuidado de ponta a ponta</span>
+      <h2>Um carinho a mais em cada detalhe</h2>
+      <p>
+        Serviços pensados para o bem-estar e a felicidade
+        do seu melhor amigo.
+      </p>
+    </div>
+
+    <div class="service-grid">
+
+      <article class="service-card">
+        <div class="service-icon">🛁</div>
+        <h3>Banho & Tosa</h3>
+        <p>
+          Higiene, cuidado com a pelagem e aquele cheirinho
+          gostoso, respeitando o conforto do seu pet.
+        </p>
+        <a href="#contato" class="service-link" data-service="Banho & Tosa">
+          Agendar serviço →
+        </a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">🩺</div>
+        <h3>Consulta Veterinária</h3>
+        <p>
+          Acompanhamento preventivo e orientação profissional
+          para cuidar da saúde em todas as fases.
+        </p>
+        <a href="#contato" class="service-link" data-service="Consulta Veterinária">
+          Agendar serviço →
+        </a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">🥣</div>
+        <h3>Pet Shop & Acessórios</h3>
+        <p>
+          Produtos, brinquedos, acessórios e itens essenciais
+          para uma rotina mais saudável e divertida.
+        </p>
+        <a href="#contato" class="service-link" data-service="Pet Shop & Acessórios">
+          Fale com a equipe →
+        </a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+
+<section id="contato">
+  <div class="container">
+    <div class="cta-panel">
+
+      <div>
+        <h2>Seu novo melhor amigo pode estar aqui.</h2>
+        <p>
+          Entre em contato para saber mais sobre adoção
+          ou nossos serviços.
+        </p>
+      </div>
+
+      <a class="btn" href="mailto:contato@seudominio.com">
+        Fale com a gente ✉
+      </a>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+        <a class="brand" href="#inicio">🐾 meu pet</a>
+        <p class="footer-about">
+          Mais do que um pet shop: um espaço de cuidado,
+          respeito e amor pelos animais. Porque eles são
+          parte da família.
+        </p>
+      </div>
+
+      <div>
+        <h4>Navegação</h4>
+        <a href="#inicio">Home</a>
+        <a href="#adocao">Adoção</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#contato">Contato</a>
+      </div>
+
+      <div>
+        <h4>Contato</h4>
+        <p>📍 Seu endereço, sua cidade</p>
+        <p>☎ (00) 00000-0000</p>
+        <p>✉ contato@seudominio.com</p>
+      </div>
+
+      <div>
+        <h4>Funcionamento</h4>
+        <p>Segunda a sexta: 09h às 18h</p>
+        <p>Sábado: 09h às 13h</p>
+        <p>Domingo: fechado</p>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © <span id="year"></span> Meu Pet. Todos os direitos reservados.
+    </div>
+
+  </div>
+</footer>
+
+<!-- JANELA DE CONTATO -->
+
+<div class="modal" id="adoptModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+  <div class="modal-box">
+
+    <button class="close" id="closeModal" aria-label="Fechar">×</button>
+
+    <h3 id="modalTitle">Vamos conversar?</h3>
+
+    <p id="modalText">
+      Preencha seus dados para demonstrar interesse.
+    </p>
+
+    <form id="interestForm">
+
+      <div class="form-row">
+        <label for="personName">Seu nome</label>
+        <input id="personName" name="nome" required placeholder="Seu nome">
+      </div>
+
+      <div class="form-row">
+        <label for="personEmail">Seu e-mail</label>
+        <input id="personEmail" name="email" type="email" required placeholder="voce@email.com">
+      </div>
+
+      <div class="form-row">
+        <label for="personMessage">Mensagem</label>
+        <textarea id="personMessage" name="mensagem" required></textarea>
+      </div>
+
+      <button class="btn" type="submit">Enviar por e-mail →</button>
+
+    </form>
+  </div>
+</div>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+  const open = navLinks.classList.toggle("show");
+
+  menuBtn.setAttribute("aria-expanded", String(open));
+  menuBtn.textContent = open ? "×" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("show");
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.textContent = "☰";
+  });
+});
+
+const modal = document.getElementById("adoptModal");
+const message = document.getElementById("personMessage");
+
+document.querySelectorAll(".adopt-btn").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    document.getElementById("modalTitle").textContent =
+      "Interesse em adotar " + button.dataset.pet;
+
+    message.value =
+      "Olá! Gostaria de saber mais sobre a adoção de " +
+      button.dataset.pet + ".";
+
+    modal.classList.add("open");
+    document.getElementById("personName").focus();
+
+  });
+
+});
+
+document.querySelectorAll(".service-link").forEach(link => {
+
+  link.addEventListener("click", () => {
+
+    message.value =
+      "Olá! Gostaria de informações sobre " +
+      link.dataset.service + ".";
+
+    document.getElementById("modalTitle").textContent =
+      "Agendamento: " + link.dataset.service;
+
+    modal.classList.add("open");
+
+  });
+
+});
+
+function closeModal() {
+  modal.classList.remove("open");
+}
+
+document.getElementById("closeModal").addEventListener("click", closeModal);
+
+modal.addEventListener("click", event => {
+  if (event.target === modal) closeModal();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeModal();
+});
+
+document.getElementById("interestForm").addEventListener("submit", event => {
+
+  event.preventDefault();
+
+  const data = new FormData(event.target);
+
+  const subject = encodeURIComponent("Contato pelo site Meu Pet");
+
+  const body = encodeURIComponent(
+    `Nome: ${data.get("nome")}
+E-mail: ${data.get("email")}
+Mensagem: ${data.get("mensagem")}`
+  );
+
+  window.location.href =
+    `mailto:contato@seudominio.com?subject=${subject}&body=${body}`;
+
+});
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
